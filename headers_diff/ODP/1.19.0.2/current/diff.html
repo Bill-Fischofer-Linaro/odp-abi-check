@@ -1,0 +1,839 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="ODP, header, diff" />
+    <meta name="description" content="Diff for header files between 1.19.0.2 and current versions of ODP" />
+    <link rel="stylesheet" type="text/css" href="../../../../css/common.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../css/headers_diff.css" />
+    
+    
+    <title>
+        ODP: headers diff between 1.19.0.2 and current versions
+    </title>
+    
+    </head>
+
+<body>
+<table width='100%' cellpadding='0' cellspacing='0'><tr><td><table cellpadding='0' cellspacing='0'><tr><td align='center'><h1 class='tool'><a title='ABI tracker for ODP' href='../../../../timeline/ODP/index.html' class='tool'>ABI<br/>Tracker</a></h1></td><td width='30px;'></td><td><h1>(ODP)</h1></td></tr></table><hr/>
+<br/>
+<br/>
+<h1>Headers diff: <span class='version'>1.19.0.2</span> vs <span class='version'>current</span></h1><br/><br/> 
+  <table class='diff_tbl' border="0" cellpadding="0" cellspacing="0"> 
+  <tr bgcolor="orange"><th>&nbsp;classification.h (1.19.0.2)&nbsp;</th><th> </th><th>&nbsp;classification.h (current)&nbsp;</th></tr> 
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr bgcolor="gray" ><th><a name="part-l1" /><small>skipping to change at</small><em> line 27</em></th><th> </th><th><a name="part-r1" /><small>skipping to change at</small><em> line 27</em></th></tr>
+      <tr><td class="left">/** Dummy type for strong typing */</td><td> </td><td class="right">/** Dummy type for strong typing */</td></tr>
+      <tr><td class="left">typedef struct { char dummy; /**&lt; @internal Dummy */ } _odp_abi_pmr_t;</td><td> </td><td class="right">typedef struct { char dummy; /**&lt; @internal Dummy */ } _odp_abi_pmr_t;</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/** @ingroup odp_classification</td><td> </td><td class="right">/** @ingroup odp_classification</td></tr>
+      <tr><td class="left"> *  @{</td><td> </td><td class="right"> *  @{</td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">typedef _odp_abi_cos_t *odp_cos_t;</td><td> </td><td class="right">typedef _odp_abi_cos_t *odp_cos_t;</td></tr>
+      <tr><td class="left">typedef _odp_abi_pmr_t *odp_pmr_t;</td><td> </td><td class="right">typedef _odp_abi_pmr_t *odp_pmr_t;</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td><a name="diff0001" /></td></tr>
+      <tr><td class="lblock">#define ODP_COS_INVALID   <span class="delete">((odp_cos_t)~0)</span></td><td> </td><td class="rblock">#define ODP_COS_INVALID   <span class="insert">((odp_cos_t)0)</span></td></tr>
+      <tr><td class="lblock">#define ODP_PMR_INVAL     <span class="delete">((odp_pmr_t)~0)</span></td><td> </td><td class="rblock">#define ODP_PMR_INVAL     <span class="insert">((odp_pmr_t)0)</span></td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">#define ODP_COS_NAME_LEN  32</td><td> </td><td class="right">#define ODP_COS_NAME_LEN  32</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**</td><td> </td><td class="right">/**</td></tr>
+      <tr><td class="left"> * @}</td><td> </td><td class="right"> * @}</td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">#ifdef __cplusplus</td><td> </td><td class="right">#ifdef __cplusplus</td></tr>
+      <tr><td class="left">}</td><td> </td><td class="right">}</td></tr>
+      <tr><td class="left">#endif</td><td> </td><td class="right">#endif</td></tr>
+
+     <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+     <tr bgcolor="gray"><th colspan="5" align="center"><a name="end">&nbsp;End of changes. 1 change blocks.&nbsp;</a></th></tr>
+     <tr class="stats"><th><i>2 lines changed or deleted</i></th><th><i> </i></th><th><i>2 lines changed or added</i></th></tr>
+     <tr><td colspan="5" align="center" class="small"></td></tr>
+   </table>
+   <br/><br/>
+ 
+  <table class='diff_tbl' border="0" cellpadding="0" cellspacing="0"> 
+  <tr bgcolor="orange"><th>&nbsp;cpumask.h (1.19.0.2)&nbsp;</th><th> </th><th>&nbsp;cpumask.h (current)&nbsp;</th></tr> 
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr bgcolor="gray" ><th><a name="part-l1" /><small>skipping to change at</small><em> line 26</em></th><th> </th><th><a name="part-r1" /><small>skipping to change at</small><em> line 26</em></th></tr>
+      <tr><td class="left">#ifdef __cplusplus</td><td> </td><td class="right">#ifdef __cplusplus</td></tr>
+      <tr><td class="left">extern "C" {</td><td> </td><td class="right">extern "C" {</td></tr>
+      <tr><td class="left">#endif</td><td> </td><td class="right">#endif</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/** @addtogroup odp_cpumask</td><td> </td><td class="right">/** @addtogroup odp_cpumask</td></tr>
+      <tr><td class="left"> *  @{</td><td> </td><td class="right"> *  @{</td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">#include &lt;odp/api/std_types.h&gt;</td><td> </td><td class="right">#include &lt;odp/api/std_types.h&gt;</td></tr>
+      <tr><td class="left">#include &lt;odp/api/align.h&gt;</td><td> </td><td class="right">#include &lt;odp/api/align.h&gt;</td></tr>
+      <tr><td><a name="diff0001" /></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">#include &lt;sched.h&gt;</span></td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td><a name="diff0002" /></td></tr>
+      <tr><td class="lblock">#define ODP_CPUMASK_SIZE <span class="delete">1024</span></td><td> </td><td class="rblock">#define ODP_CPUMASK_SIZE <span class="insert">(sizeof(cpu_set_t) * 8)</span></td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">#define ODP_CPUMASK_STR_SIZE ((ODP_CPUMASK_SIZE + 3) / 4 + 3)</td><td> </td><td class="right">#define ODP_CPUMASK_STR_SIZE ((ODP_CPUMASK_SIZE + 3) / 4 + 3)</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**</td><td> </td><td class="right">/**</td></tr>
+      <tr><td class="left"> * CPU mask</td><td> </td><td class="right"> * CPU mask</td></tr>
+      <tr><td class="left"> *</td><td> </td><td class="right"> *</td></tr>
+      <tr><td class="left"> * Don't access directly, use access functions.</td><td> </td><td class="right"> * Don't access directly, use access functions.</td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left">typedef struct ODP_ALIGNED(8) odp_cpumask_t {</td><td> </td><td class="right">typedef struct ODP_ALIGNED(8) odp_cpumask_t {</td></tr>
+      <tr><td class="left">       /** @private CPU mask storage</td><td> </td><td class="right">       /** @private CPU mask storage</td></tr>
+
+     <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+     <tr bgcolor="gray"><th colspan="5" align="center"><a name="end">&nbsp;End of changes. 2 change blocks.&nbsp;</a></th></tr>
+     <tr class="stats"><th><i>1 lines changed or deleted</i></th><th><i> </i></th><th><i>2 lines changed or added</i></th></tr>
+     <tr><td colspan="5" align="center" class="small"></td></tr>
+   </table>
+   <br/><br/>
+ 
+  <table class='diff_tbl' border="0" cellpadding="0" cellspacing="0"> 
+  <tr bgcolor="orange"><th>&nbsp;ipsec.h (1.19.0.2)&nbsp;</th><th> </th><th>&nbsp;ipsec.h (current)&nbsp;</th></tr> 
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr bgcolor="gray" ><th><a name="part-l1" /><small>skipping to change at</small><em> line 31</em></th><th> </th><th><a name="part-r1" /><small>skipping to change at</small><em> line 31</em></th></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/** @internal Dummy type for strong typing */</td><td> </td><td class="right">/** @internal Dummy type for strong typing */</td></tr>
+      <tr><td class="left">typedef struct { char dummy; /**&lt; @internal Dummy */ } _odp_abi_ipsec_sa_t;</td><td> </td><td class="right">typedef struct { char dummy; /**&lt; @internal Dummy */ } _odp_abi_ipsec_sa_t;</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/** @ingroup odp_ipsec</td><td> </td><td class="right">/** @ingroup odp_ipsec</td></tr>
+      <tr><td class="left"> *  @{</td><td> </td><td class="right"> *  @{</td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">typedef _odp_abi_ipsec_sa_t *odp_ipsec_sa_t;</td><td> </td><td class="right">typedef _odp_abi_ipsec_sa_t *odp_ipsec_sa_t;</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td><a name="diff0001" /></td></tr>
+      <tr><td class="lblock">#define ODP_IPSEC_SA_INVALID ((odp_ipsec_sa_t)0<span class="delete">xffffffff</span>)</td><td> </td><td class="rblock">#define ODP_IPSEC_SA_INVALID ((odp_ipsec_sa_t)0)</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**</td><td> </td><td class="right">/**</td></tr>
+      <tr><td class="left"> * @}</td><td> </td><td class="right"> * @}</td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">#ifdef __cplusplus</td><td> </td><td class="right">#ifdef __cplusplus</td></tr>
+      <tr><td class="left">}</td><td> </td><td class="right">}</td></tr>
+      <tr><td class="left">#endif</td><td> </td><td class="right">#endif</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">#endif</td><td> </td><td class="right">#endif</td></tr>
+
+     <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+     <tr bgcolor="gray"><th colspan="5" align="center"><a name="end">&nbsp;End of changes. 1 change blocks.&nbsp;</a></th></tr>
+     <tr class="stats"><th><i>1 lines changed or deleted</i></th><th><i> </i></th><th><i>1 lines changed or added</i></th></tr>
+     <tr><td colspan="5" align="center" class="small"></td></tr>
+   </table>
+   <br/><br/>
+ 
+  <table class='diff_tbl' border="0" cellpadding="0" cellspacing="0"> 
+  <tr bgcolor="orange"><th>&nbsp;packet.h (1.19.0.2)&nbsp;</th><th> </th><th>&nbsp;packet.h (current)&nbsp;</th></tr> 
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr bgcolor="gray" ><th><a name="part-l1" /><small>skipping to change at</small><em> line 30</em></th><th> </th><th><a name="part-r1" /><small>skipping to change at</small><em> line 30</em></th></tr>
+      <tr><td class="left">typedef struct { char dummy; /**&lt; *internal Dummy */ } _odp_abi_packet_seg_
+t;</td><td> </td><td class="right">typedef struct { char dummy; /**&lt; *internal Dummy */ } _odp_abi_packet_seg_
+t;</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/** @ingroup odp_packet</td><td> </td><td class="right">/** @ingroup odp_packet</td></tr>
+      <tr><td class="left"> *  @{</td><td> </td><td class="right"> *  @{</td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">typedef _odp_abi_packet_t *odp_packet_t;</td><td> </td><td class="right">typedef _odp_abi_packet_t *odp_packet_t;</td></tr>
+      <tr><td class="left">typedef _odp_abi_packet_seg_t *odp_packet_seg_t;</td><td> </td><td class="right">typedef _odp_abi_packet_seg_t *odp_packet_seg_t;</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">#define ODP_PACKET_INVALID        ((odp_packet_t)0)</td><td> </td><td class="right">#define ODP_PACKET_INVALID        ((odp_packet_t)0)</td></tr>
+      <tr><td><a name="diff0001" /></td></tr>
+      <tr><td class="lblock">#define ODP_PACKET_SEG_INVALID    ((odp_packet_seg_t)0<span class="delete">xffffffff</span>)</td><td> </td><td class="rblock">#define ODP_PACKET_SEG_INVALID    ((odp_packet_seg_t)0)</td></tr>
+      <tr><td class="left">#define ODP_PACKET_OFFSET_INVALID 0xffff</td><td> </td><td class="right">#define ODP_PACKET_OFFSET_INVALID 0xffff</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">typedef uint8_t odp_proto_l2_type_t;</td><td> </td><td class="right">typedef uint8_t odp_proto_l2_type_t;</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">#define ODP_PROTO_L2_TYPE_NONE   0</td><td> </td><td class="right">#define ODP_PROTO_L2_TYPE_NONE   0</td></tr>
+      <tr><td class="left">#define ODP_PROTO_L2_TYPE_ETH    1</td><td> </td><td class="right">#define ODP_PROTO_L2_TYPE_ETH    1</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">typedef uint8_t odp_proto_l3_type_t;</td><td> </td><td class="right">typedef uint8_t odp_proto_l3_type_t;</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">#define ODP_PROTO_L3_TYPE_NONE   0</td><td> </td><td class="right">#define ODP_PROTO_L3_TYPE_NONE   0</td></tr>
+
+     <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+     <tr bgcolor="gray"><th colspan="5" align="center"><a name="end">&nbsp;End of changes. 1 change blocks.&nbsp;</a></th></tr>
+     <tr class="stats"><th><i>1 lines changed or deleted</i></th><th><i> </i></th><th><i>1 lines changed or added</i></th></tr>
+     <tr><td colspan="5" align="center" class="small"></td></tr>
+   </table>
+   <br/><br/>
+ 
+  <table class='diff_tbl' border="0" cellpadding="0" cellspacing="0"> 
+  <tr bgcolor="orange"><th>&nbsp;pool.h (1.19.0.2)&nbsp;</th><th> </th><th>&nbsp;pool.h (current)&nbsp;</th></tr> 
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr bgcolor="gray" ><th><a name="part-l1" /><small>skipping to change at</small><em> line 25</em></th><th> </th><th><a name="part-r1" /><small>skipping to change at</small><em> line 25</em></th></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/** @internal Dummy type for strong typing */</td><td> </td><td class="right">/** @internal Dummy type for strong typing */</td></tr>
+      <tr><td class="left">typedef struct { char dummy; /**&lt; @internal Dummy */ } _odp_abi_pool_t;</td><td> </td><td class="right">typedef struct { char dummy; /**&lt; @internal Dummy */ } _odp_abi_pool_t;</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/** @ingroup odp_pool</td><td> </td><td class="right">/** @ingroup odp_pool</td></tr>
+      <tr><td class="left"> *  @{</td><td> </td><td class="right"> *  @{</td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">typedef _odp_abi_pool_t *odp_pool_t;</td><td> </td><td class="right">typedef _odp_abi_pool_t *odp_pool_t;</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td><a name="diff0001" /></td></tr>
+      <tr><td class="lblock">#define ODP_POOL_INVALID   ((odp_pool_t)0<span class="delete">xffffffff</span>)</td><td> </td><td class="rblock">#define ODP_POOL_INVALID   ((odp_pool_t)0)</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">#define ODP_POOL_NAME_LEN  32</td><td> </td><td class="right">#define ODP_POOL_NAME_LEN  32</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">typedef enum odp_pool_type_t {</td><td> </td><td class="right">typedef enum odp_pool_type_t {</td></tr>
+      <tr><td class="left">       ODP_POOL_BUFFER  = ODP_EVENT_BUFFER,</td><td> </td><td class="right">       ODP_POOL_BUFFER  = ODP_EVENT_BUFFER,</td></tr>
+      <tr><td class="left">       ODP_POOL_PACKET  = ODP_EVENT_PACKET,</td><td> </td><td class="right">       ODP_POOL_PACKET  = ODP_EVENT_PACKET,</td></tr>
+      <tr><td class="left">       ODP_POOL_TIMEOUT = ODP_EVENT_TIMEOUT</td><td> </td><td class="right">       ODP_POOL_TIMEOUT = ODP_EVENT_TIMEOUT</td></tr>
+      <tr><td class="left">} odp_pool_type_t;</td><td> </td><td class="right">} odp_pool_type_t;</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**</td><td> </td><td class="right">/**</td></tr>
+
+     <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+     <tr bgcolor="gray"><th colspan="5" align="center"><a name="end">&nbsp;End of changes. 1 change blocks.&nbsp;</a></th></tr>
+     <tr class="stats"><th><i>1 lines changed or deleted</i></th><th><i> </i></th><th><i>1 lines changed or added</i></th></tr>
+     <tr><td colspan="5" align="center" class="small"></td></tr>
+   </table>
+   <br/><br/>
+ 
+  <table class='diff_tbl' border="0" cellpadding="0" cellspacing="0"> 
+  <tr bgcolor="orange"><th>&nbsp;thread.h (1.19.0.2)&nbsp;</th><th> </th><th>&nbsp;thread.h (current)&nbsp;</th></tr> 
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr bgcolor="gray" ><th><a name="part-l1" /><small>skipping to change at</small><em> line 24</em></th><th> </th><th><a name="part-r1" /><small>skipping to change at</small><em> line 24</em></th></tr>
+      <tr><td class="left">#define ODP_ABI_THREAD_H_</td><td> </td><td class="right">#define ODP_ABI_THREAD_H_</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">#ifdef __cplusplus</td><td> </td><td class="right">#ifdef __cplusplus</td></tr>
+      <tr><td class="left">extern "C" {</td><td> </td><td class="right">extern "C" {</td></tr>
+      <tr><td class="left">#endif</td><td> </td><td class="right">#endif</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/** @addtogroup odp_thread</td><td> </td><td class="right">/** @addtogroup odp_thread</td></tr>
+      <tr><td class="left"> *  @{</td><td> </td><td class="right"> *  @{</td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td><a name="diff0001" /></td></tr>
+      <tr><td class="lblock">#define ODP_THREAD_COUNT_MAX <span class="delete">128</span></td><td> </td><td class="rblock">#define ODP_THREAD_COUNT_MAX <span class="insert">256</span></td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**</td><td> </td><td class="right">/**</td></tr>
+      <tr><td class="left"> * @}</td><td> </td><td class="right"> * @}</td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">#ifdef __cplusplus</td><td> </td><td class="right">#ifdef __cplusplus</td></tr>
+      <tr><td class="left">}</td><td> </td><td class="right">}</td></tr>
+      <tr><td class="left">#endif</td><td> </td><td class="right">#endif</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">#endif</td><td> </td><td class="right">#endif</td></tr>
+
+     <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+     <tr bgcolor="gray"><th colspan="5" align="center"><a name="end">&nbsp;End of changes. 1 change blocks.&nbsp;</a></th></tr>
+     <tr class="stats"><th><i>1 lines changed or deleted</i></th><th><i> </i></th><th><i>1 lines changed or added</i></th></tr>
+     <tr><td colspan="5" align="center" class="small"></td></tr>
+   </table>
+   <br/><br/>
+ 
+  <table class='diff_tbl' border="0" cellpadding="0" cellspacing="0"> 
+  <tr bgcolor="orange"><th>&nbsp;timer.h (1.19.0.2)&nbsp;</th><th> </th><th>&nbsp;timer.h (current)&nbsp;</th></tr> 
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr bgcolor="gray" ><th><a name="part-l1" /><small>skipping to change at</small><em> line 34</em></th><th> </th><th><a name="part-r1" /><small>skipping to change at</small><em> line 34</em></th></tr>
+      <tr><td class="left">typedef struct { char dummy; /**&lt; @internal Dummy */ } _odp_abi_timeout_t;</td><td> </td><td class="right">typedef struct { char dummy; /**&lt; @internal Dummy */ } _odp_abi_timeout_t;</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/** @addtogroup odp_timer</td><td> </td><td class="right">/** @addtogroup odp_timer</td></tr>
+      <tr><td class="left"> *  @{</td><td> </td><td class="right"> *  @{</td></tr>
+      <tr><td class="left"> **/</td><td> </td><td class="right"> **/</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">struct timer_pool_s; /**&lt; Forward declaration */</td><td> </td><td class="right">struct timer_pool_s; /**&lt; Forward declaration */</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">typedef struct timer_pool_s *odp_timer_pool_t;</td><td> </td><td class="right">typedef struct timer_pool_s *odp_timer_pool_t;</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td><a name="diff0001" /></td></tr>
+      <tr><td class="lblock">#define ODP_TIMER_POOL_INVALID <span class="delete">NULL</span></td><td> </td><td class="rblock">#define ODP_TIMER_POOL_INVALID <span class="insert"> ((odp_timer_pool_t)0)</span></td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">#define ODP_TIMER_POOL_NAME_LEN  32</td><td> </td><td class="right">#define ODP_TIMER_POOL_NAME_LEN  32</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">typedef _odp_abi_timer_t *odp_timer_t;</td><td> </td><td class="right">typedef _odp_abi_timer_t *odp_timer_t;</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td><a name="diff0002" /></td></tr>
+      <tr><td class="lblock">#define ODP_TIMER_INVALID ((odp_timer_t)0<span class="delete">xffffffff</span>)</td><td> </td><td class="rblock">#define ODP_TIMER_INVALID ((odp_timer_t)0)</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">typedef _odp_abi_timeout_t *odp_timeout_t;</td><td> </td><td class="right">typedef _odp_abi_timeout_t *odp_timeout_t;</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td><a name="diff0003" /></td></tr>
+      <tr><td class="lblock">#define ODP_TIMEOUT_INVALID  ((odp_timeout_t)<span class="delete">NULL</span>)</td><td> </td><td class="rblock">#define ODP_TIMEOUT_INVALID  ((odp_timeout_t)<span class="insert">0</span>)</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**</td><td> </td><td class="right">/**</td></tr>
+      <tr><td class="left"> * @}</td><td> </td><td class="right"> * @}</td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">#ifdef __cplusplus</td><td> </td><td class="right">#ifdef __cplusplus</td></tr>
+      <tr><td class="left">}</td><td> </td><td class="right">}</td></tr>
+      <tr><td class="left">#endif</td><td> </td><td class="right">#endif</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">#endif</td><td> </td><td class="right">#endif</td></tr>
+
+     <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+     <tr bgcolor="gray"><th colspan="5" align="center"><a name="end">&nbsp;End of changes. 3 change blocks.&nbsp;</a></th></tr>
+     <tr class="stats"><th><i>3 lines changed or deleted</i></th><th><i> </i></th><th><i>3 lines changed or added</i></th></tr>
+     <tr><td colspan="5" align="center" class="small"></td></tr>
+   </table>
+   <br/><br/>
+ 
+  <table class='diff_tbl' border="0" cellpadding="0" cellspacing="0"> 
+  <tr bgcolor="orange"><th>&nbsp;queue.h (1.19.0.2)&nbsp;</th><th> </th><th>&nbsp;queue.h (current)&nbsp;</th></tr> 
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr bgcolor="gray" ><th><a name="part-l1" /><small>skipping to change at</small><em> line 21</em></th><th> </th><th><a name="part-r1" /><small>skipping to change at</small><em> line 21</em></th></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">#ifndef ODP_API_SPEC_QUEUE_H_</td><td> </td><td class="right">#ifndef ODP_API_SPEC_QUEUE_H_</td></tr>
+      <tr><td class="left">#define ODP_API_SPEC_QUEUE_H_</td><td> </td><td class="right">#define ODP_API_SPEC_QUEUE_H_</td></tr>
+      <tr><td class="left">#include &lt;odp/visibility_begin.h&gt;</td><td> </td><td class="right">#include &lt;odp/visibility_begin.h&gt;</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">#ifdef __cplusplus</td><td> </td><td class="right">#ifdef __cplusplus</td></tr>
+      <tr><td class="left">extern "C" {</td><td> </td><td class="right">extern "C" {</td></tr>
+      <tr><td class="left">#endif</td><td> </td><td class="right">#endif</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td><a name="diff0001" /></td></tr>
+      <tr><td class="lblock"><span class="delete">#include &lt;odp/api/schedule_types.h&gt;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="left">#include &lt;odp/api/event.h&gt;</td><td> </td><td class="right">#include &lt;odp/api/event.h&gt;</td></tr>
+      <tr><td><a name="diff0002" /></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">#include &lt;odp/api/spec/queue_types.h&gt;</span></td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/** @defgroup odp_queue ODP QUEUE</td><td> </td><td class="right">/** @defgroup odp_queue ODP QUEUE</td></tr>
+      <tr><td class="left"> *  Macros and operation on a queue.</td><td> </td><td class="right"> *  Macros and operation on a queue.</td></tr>
+      <tr><td class="left"> *  @{</td><td> </td><td class="right"> *  @{</td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**</td><td> </td><td class="right">/**</td></tr>
+      <tr><td class="left"> * @typedef odp_queue_t</td><td> </td><td class="right"> * @typedef odp_queue_t</td></tr>
+      <tr><td class="left"> * ODP queue</td><td> </td><td class="right"> * ODP queue</td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr bgcolor="gray" ><th><a name="part-l2" /><small>skipping to change at</small><em> line 45</em></th><th> </th><th><a name="part-r2" /><small>skipping to change at</small><em> line 45</em></th></tr>
+      <tr><td class="left"> * @def ODP_QUEUE_INVALID</td><td> </td><td class="right"> * @def ODP_QUEUE_INVALID</td></tr>
+      <tr><td class="left"> * Invalid queue</td><td> </td><td class="right"> * Invalid queue</td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**</td><td> </td><td class="right">/**</td></tr>
+      <tr><td class="left"> * @def ODP_QUEUE_NAME_LEN</td><td> </td><td class="right"> * @def ODP_QUEUE_NAME_LEN</td></tr>
+      <tr><td class="left"> * Maximum queue name length in chars including null char</td><td> </td><td class="right"> * Maximum queue name length in chars including null char</td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**</td><td> </td><td class="right">/**</td></tr>
+      <tr><td><a name="diff0003" /></td></tr>
+      <tr><td class="lblock"> <span class="delete">* Queue type</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">typedef enum odp_queue_type_t {</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       /** Plain queue</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         *</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * Plain queues offer simple FIFO storage of events. Application ma</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">y</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * dequeue directly from these queues. */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       ODP_QUEUE_TYPE_PLAIN = 0,</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       /** Scheduled queue</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         *</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * Scheduled queues are connected to the scheduler. Application mus</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">t</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * not dequeue events directly from these queues but use the schedu</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">ler</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * instead. */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       ODP_QUEUE_TYPE_SCHED</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">} odp_queue_type_t;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">/**</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> * Queue operation mode</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">typedef enum odp_queue_op_mode_t {</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       /** Multithread safe operation</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         *</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * Queue operation (enqueue or dequeue) is multithread safe. Any</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * number of application threads may perform the operation</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * concurrently. */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       ODP_QUEUE_OP_MT = 0,</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       /** Not multithread safe operation</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         *</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * Queue operation (enqueue or dequeue) may not be multithread safe</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">.</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * Application ensures synchronization between threads so that</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * simultaneously only single thread attempts the operation on</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * the same queue. */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       ODP_QUEUE_OP_MT_UNSAFE,</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       /** Disabled</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         *</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * Direct enqueue or dequeue operation from application is disabled</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">.</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * An attempt to enqueue/dequeue directly will result undefined</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * behaviour. Various ODP functions (e.g. packet input, timer,</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * crypto, scheduler, etc) are able to perform enqueue or</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * dequeue operations normally on the queue.</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       ODP_QUEUE_OP_DISABLED</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">} odp_queue_op_mode_t;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">/**</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> * Non-blocking level</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> *</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> * A non-blocking level defines implementation guarantees for application</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> * progress when multiple threads operate on the same resource (e.g. a queu</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">e)</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> * simultaneously. The first level (ODP_BLOCKING) does not have any block</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> * freedom guarantees, but a suspending thread may block the other threads </span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">for</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> * the entire time it remains suspended (infinitely if crashed).</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> * On the contrary, actual non-blocking levels provide guarantees of progre</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">ss:</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> *</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> * ODP_NONBLOCKING_LF:  A non-blocking and lock-free implementation guarant</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">ees</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> *                      that at least one of the threads successfully compl</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">etes</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> *                      its operations, regardless of what other threads do</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">.</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> *                      Application progress is guaranteed, but individual</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> *                      threads may starve while trying to execute their</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> *                      operations on the shared resource.</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> *</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> * ODP_NONBLOCKING_WF:  A non-blocking and wait-free implementation guarant</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">ees</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> *                      application progress with starvation freedom. All</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> *                      threads are guaranteed to complete their operations</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> in</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> *                      a bounded number of steps, regardless of what other</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> *                      threads do.</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> *</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> * Non-blocking levels are listed from the weakest to the strongest guarant</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">ee of</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> * block freedom. Performance of a non-blocking implementation may be lower</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> than</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> * the blocking one. Non-blocking guarantees are important e.g. for real-ti</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">me</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> * applications when real-time and non real-time threads share a resource.</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">typedef enum odp_nonblocking_t {</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       /** Blocking implementation. A suspeding thread may block all other</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">        *  threads, i.e. no block freedom guarantees. This is the lowest le</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">vel.</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">        */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       ODP_BLOCKING = 0,</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       /** Non-blocking and lock-free implementation. Other threads can mak</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">e</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">        *  progress while a thread is suspended. Starvation freedom is not</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">        *  guaranteed.</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">        */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       ODP_NONBLOCKING_LF,</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       /** Non-blocking and wait-free implementation. Other threads can mak</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">e</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">        *  progress while a thread is suspended. Starvation freedom is</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">        *  guaranteed.</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">        */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       ODP_NONBLOCKING_WF</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">} odp_nonblocking_t;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">/**</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> * Queue capabilities</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">typedef struct odp_queue_capability_t {</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       /** Maximum number of event queues of any type (default size). Use</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * this in addition to queue type specific 'max_num', if both queue</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * types are used simultaneously. */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       uint32_t max_queues;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       /** Maximum number of ordered locks per queue */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       uint32_t max_ordered_locks;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       /** Maximum number of scheduling groups */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       unsigned max_sched_groups;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       /** Number of scheduling priorities */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       unsigned sched_prios;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       /** Plain queue capabilities */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       struct {</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">               /** Maximum number of plain (ODP_BLOCKING) queues of the</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                 * default size. */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">               uint32_t max_num;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">               /** Maximum number of events a plain (ODP_BLOCKING) queue ca</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">n</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                 * store simultaneously. The value of zero means that plain</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                 * queues do not have a size limit, but a single queue can</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                 * store all available events. */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">               uint32_t max_size;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">               /** Lock-free (ODP_NONBLOCKING_LF) implementation capabiliti</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">es.</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                 * The specification is the same as for the blocking</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                 * implementation. */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">               struct {</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                       /** Maximum number of queues. Lock-free queues are n</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">ot</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                         * supported when zero. */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                       uint32_t max_num;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                       /** Maximum queue size */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                       uint32_t max_size;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">               } lockfree;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">               /** Wait-free (ODP_NONBLOCKING_WF) implementation capabiliti</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">es.</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                 * The specification is the same as for the blocking</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                 * implementation. */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">               struct {</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                       /** Maximum number of queues. Wait-free queues are n</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">ot</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                         * supported when zero. */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                       uint32_t max_num;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                       /** Maximum queue size */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                       uint32_t max_size;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">               } waitfree;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       } plain;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       /** Scheduled queue capabilities */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       struct {</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">               /** Maximum number of scheduled (ODP_BLOCKING) queues of the</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                 * default size. */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">               uint32_t max_num;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">               /** Maximum number of events a scheduled (ODP_BLOCKING) queu</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">e</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                 * can store simultaneously. The value of zero means that</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                 * scheduled queues do not have a size limit, but a single</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                 * queue can store all available events. */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">               uint32_t max_size;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">               /** Lock-free (ODP_NONBLOCKING_LF) implementation capabiliti</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">es.</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                 * The specification is the same as for the blocking</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                 * implementation. */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">               struct {</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                       /** Maximum number of queues. Lock-free queues are n</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">ot</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                         * supported when zero. */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                       uint32_t max_num;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                       /** Maximum queue size */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                       uint32_t max_size;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">               } lockfree;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">               /** Wait-free (ODP_NONBLOCKING_WF) implementation capabiliti</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">es.</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                 * The specification is the same as for the blocking</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                 * implementation. */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">               struct {</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                       /** Maximum number of queues. Wait-free queues are n</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">ot</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                         * supported when zero. */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                       uint32_t max_num;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                       /** Maximum queue size */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">                       uint32_t max_size;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">               } waitfree;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       } sched;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">} odp_queue_capability_t;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">/**</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> * ODP Queue parameters</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">typedef struct odp_queue_param_t {</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       /** Queue type</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         *</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * Valid values for other parameters in this structure depend on</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * the queue type. */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       odp_queue_type_t type;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       /** Enqueue mode</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         *</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * Default value for both queue types is ODP_QUEUE_OP_MT. Applicati</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">on</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * may enable performance optimizations by defining MT_UNSAFE or</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * DISABLED modes when applicable. */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       odp_queue_op_mode_t enq_mode;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       /** Dequeue mode</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         *</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * For PLAIN queues, the default value is ODP_QUEUE_OP_MT. Applicat</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">ion</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * may enable performance optimizations by defining MT_UNSAFE or</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * DISABLED modes when applicable. However, when a plain queue is i</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">nput</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * to the implementation (e.g. a queue for packet output), the</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * parameter is ignored in queue creation and the value is</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * ODP_QUEUE_OP_DISABLED.</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         *</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * For SCHED queues, the parameter is ignored in queue creation and</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * the value is ODP_QUEUE_OP_DISABLED. */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       odp_queue_op_mode_t deq_mode;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       /** Scheduler parameters</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         *</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * These parameters are considered only when queue type is</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * ODP_QUEUE_TYPE_SCHED. */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       odp_schedule_param_t sched;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       /** Non-blocking level</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         *</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * Queue implementation must guarantee at least this level of block</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * freedom for queue enqueue and dequeue/schedule operations.</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * The default value is ODP_BLOCKING. */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       odp_nonblocking_t nonblocking;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       /** Queue context pointer</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         *</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * User defined context pointer associated with the queue. The same</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * pointer can be accessed with odp_queue_context() and</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * odp_queue_context_set() calls. The implementation may read the</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * pointer for prefetching the context data. Default value of the</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * pointer is NULL. */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       void *context;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       /** Queue context data length</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         *</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * User defined context data length in bytes for prefetching.</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * The implementation may use this value as a hint for the number o</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">f</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * context data bytes to prefetch. Default value is zero (no hint).</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       uint32_t context_len;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       /** Queue size</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         *</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * The queue must be able to store at minimum this many events</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * simultaneously. The value must not exceed 'max_size' queue</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * capability. The value of zero means implementation specific</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">         * default size. */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       uint32_t size;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">} odp_queue_param_t;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">/**</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="left"> * Queue create</td><td> </td><td class="right"> * Queue create</td></tr>
+      <tr><td class="left"> *</td><td> </td><td class="right"> *</td></tr>
+      <tr><td class="left"> * Create a queue according to the queue parameters. Queue type is specifie
+d by</td><td> </td><td class="right"> * Create a queue according to the queue parameters. Queue type is specifie
+d by</td></tr>
+      <tr><td class="left"> * queue parameter 'type'. Use odp_queue_param_init() to initialize paramet
+ers</td><td> </td><td class="right"> * queue parameter 'type'. Use odp_queue_param_init() to initialize paramet
+ers</td></tr>
+      <tr><td class="left"> * into their default values. Default values are also used when 'param' poi
+nter</td><td> </td><td class="right"> * into their default values. Default values are also used when 'param' poi
+nter</td></tr>
+      <tr><td class="left"> * is NULL. The default queue type is ODP_QUEUE_TYPE_PLAIN. The use of queu
+e</td><td> </td><td class="right"> * is NULL. The default queue type is ODP_QUEUE_TYPE_PLAIN. The use of queu
+e</td></tr>
+      <tr><td class="left"> * name is optional. Unique names are not required. However, odp_queue_look
+up()</td><td> </td><td class="right"> * name is optional. Unique names are not required. However, odp_queue_look
+up()</td></tr>
+      <tr><td class="left"> * returns only a single matching queue.</td><td> </td><td class="right"> * returns only a single matching queue.</td></tr>
+      <tr><td class="left"> *</td><td> </td><td class="right"> *</td></tr>
+      <tr><td class="left"> * @param name    Name of the queue or NULL. Maximum string length is</td><td> </td><td class="right"> * @param name    Name of the queue or NULL. Maximum string length is</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr bgcolor="gray" ><th><a name="part-l3" /><small>skipping to change at</small><em> line 530</em></th><th> </th><th><a name="part-r3" /><small>skipping to change at</small><em> line 264</em></th></tr>
+      <tr><td class="left"> *</td><td> </td><td class="right"> *</td></tr>
+      <tr><td class="left"> * Initialize an odp_queue_param_t to its default values for all fields.</td><td> </td><td class="right"> * Initialize an odp_queue_param_t to its default values for all fields.</td></tr>
+      <tr><td class="left"> * Also the schedule parameters are set to defaults, although the default q
+ueue</td><td> </td><td class="right"> * Also the schedule parameters are set to defaults, although the default q
+ueue</td></tr>
+      <tr><td class="left"> * type is ODP_QUEUE_TYPE_PLAIN.</td><td> </td><td class="right"> * type is ODP_QUEUE_TYPE_PLAIN.</td></tr>
+      <tr><td class="left"> *</td><td> </td><td class="right"> *</td></tr>
+      <tr><td class="left"> * @param param   Address of the odp_queue_param_t to be initialized</td><td> </td><td class="right"> * @param param   Address of the odp_queue_param_t to be initialized</td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left">void odp_queue_param_init(odp_queue_param_t *param);</td><td> </td><td class="right">void odp_queue_param_init(odp_queue_param_t *param);</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**</td><td> </td><td class="right">/**</td></tr>
+      <tr><td><a name="diff0004" /></td></tr>
+      <tr><td class="lblock"> <span class="delete">* Queue information</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> * Retrieve information about a queue with odp_queue_info()</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"> */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">typedef struct odp_queue_info_t {</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       const char *name;         /**&lt; queue name */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">       odp_queue_param_t param;  /**&lt; queue parameters */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">} odp_queue_info_t;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete"></span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">/**</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="left"> * Retrieve information about a queue</td><td> </td><td class="right"> * Retrieve information about a queue</td></tr>
+      <tr><td class="left"> *</td><td> </td><td class="right"> *</td></tr>
+      <tr><td class="left"> * Invalid queue handles or handles to free/destroyed queues leads to</td><td> </td><td class="right"> * Invalid queue handles or handles to free/destroyed queues leads to</td></tr>
+      <tr><td class="left"> * undefined behaviour. Not intended for fast path use.</td><td> </td><td class="right"> * undefined behaviour. Not intended for fast path use.</td></tr>
+      <tr><td class="left"> *</td><td> </td><td class="right"> *</td></tr>
+      <tr><td class="left"> * @param      queue   Queue handle</td><td> </td><td class="right"> * @param      queue   Queue handle</td></tr>
+      <tr><td class="left"> * @param[out] info    Queue info pointer for output</td><td> </td><td class="right"> * @param[out] info    Queue info pointer for output</td></tr>
+      <tr><td class="left"> *</td><td> </td><td class="right"> *</td></tr>
+      <tr><td class="left"> * @retval 0 Success</td><td> </td><td class="right"> * @retval 0 Success</td></tr>
+      <tr><td class="left"> * @retval &lt;0 Failure.  Info could not be retrieved.</td><td> </td><td class="right"> * @retval &lt;0 Failure.  Info could not be retrieved.</td></tr>
+
+     <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+     <tr bgcolor="gray"><th colspan="5" align="center"><a name="end">&nbsp;End of changes. 4 change blocks.&nbsp;</a></th></tr>
+     <tr class="stats"><th><i>310 lines changed or deleted</i></th><th><i> </i></th><th><i>1 lines changed or added</i></th></tr>
+     <tr><td colspan="5" align="center" class="small"></td></tr>
+   </table>
+   <br/><br/>
+ 
+  <table class='diff_tbl' border="0" cellpadding="0" cellspacing="0"> 
+  <tr bgcolor="orange"><th>&nbsp;chksum.h (1.19.0.2)&nbsp;</th><th> </th><th>&nbsp;chksum.h (current)&nbsp;</th></tr> 
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr bgcolor="gray" ><th><a name="part-l1" /><small>skipping to change at</small><em> line 193</em></th><th> </th><th><a name="part-r1" /><small>skipping to change at</small><em> line 193</em></th></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left">static inline int odph_udp_chksum_verify(odp_packet_t odp_pkt)</td><td> </td><td class="right">static inline int odph_udp_chksum_verify(odp_packet_t odp_pkt)</td></tr>
+      <tr><td class="left">{</td><td> </td><td class="right">{</td></tr>
+      <tr><td class="left">       if (!odp_packet_has_udp(odp_pkt))</td><td> </td><td class="right">       if (!odp_packet_has_udp(odp_pkt))</td></tr>
+      <tr><td class="left">               return -1;</td><td> </td><td class="right">               return -1;</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">       return odph_udp_tcp_chksum(odp_pkt, ODPH_CHKSUM_VERIFY, NULL);</td><td> </td><td class="right">       return odph_udp_tcp_chksum(odp_pkt, ODPH_CHKSUM_VERIFY, NULL);</td></tr>
+      <tr><td class="left">}</td><td> </td><td class="right">}</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**</td><td> </td><td class="right">/**</td></tr>
+      <tr><td><a name="diff0001" /></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"> <span class="insert">* Generate SCTP checksum</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> *</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * This function supports SCTP over either IPv4 or IPV6 - including handlin</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">g</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * any IPv4 header options and any IPv6 extension headers.  However it</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * does not handle tunneled pkts (i.e. any case where there is more than</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * one IPv4/IPv6 header).</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * This function also handles non-contiguous pkts.  In particular it can</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * handle arbitrary packet segmentation, including cases where the segments</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * are not 2 byte aligned, nor have a length that is a multiple of 2.  This</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * function also can handle jumbo frames (at least up to 10K).</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> *</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * This function will insert the calculated CRC32-c checksum into the prope</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">r</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * location in the SCTP header.</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> *</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * @param  odp_pkt     Calculate and insert chksum for this SCTP pkt, which</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> can</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> *                     be over IPv4 or IPv6.</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * @retval 0 on success</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * @retval &lt;0 on failure</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> */</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">int odph_sctp_chksum_set(odp_packet_t odp_pkt);</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"></span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">/**</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * Verify SCTP checksum</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> *</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * This function supports SCTP over either IPv4 or IPV6 - including handlin</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">g</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * any IPv4 header options and any IPv6 extension headers.  However it</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * does not handle tunneled pkts (i.e. any case where there is more than</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * one IPv4/IPv6 header).</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * This function also handles non-contiguous pkts.  In particular it can</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * handle arbitrary packet segmentation, including cases where the segments</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * are not 2 byte aligned, nor have a length that is a multiple of 2.  This</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * function also can handle jumbo frames (at least up to 10K).</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> *</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * @param  odp_pkt     Calculate and compare the chksum for this SCTP pkt,</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> *                     which can be over IPv4 or IPv6.</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * @retval &lt;0 on failure</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * @retval 0 if the incoming chksum field is correct</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * @retval 2 when the chksum field is incorrect</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> */</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">int odph_sctp_chksum_verify(odp_packet_t odp_pkt);</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"></span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">/**</span></td></tr>
+      <tr><td class="left"> * @}</td><td> </td><td class="right"> * @}</td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">#ifdef __cplusplus</td><td> </td><td class="right">#ifdef __cplusplus</td></tr>
+      <tr><td class="left">}</td><td> </td><td class="right">}</td></tr>
+      <tr><td class="left">#endif</td><td> </td><td class="right">#endif</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">#endif</td><td> </td><td class="right">#endif</td></tr>
+
+     <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+     <tr bgcolor="gray"><th colspan="5" align="center"><a name="end">&nbsp;End of changes. 1 change blocks.&nbsp;</a></th></tr>
+     <tr class="stats"><th><i>0 lines changed or deleted</i></th><th><i> </i></th><th><i>46 lines changed or added</i></th></tr>
+     <tr><td colspan="5" align="center" class="small"></td></tr>
+   </table>
+   <br/><br/>
+ 
+  <table class='diff_tbl' border="0" cellpadding="0" cellspacing="0"> 
+  <tr bgcolor="orange"><th>&nbsp;ip.h (1.19.0.2)&nbsp;</th><th> </th><th>&nbsp;ip.h (current)&nbsp;</th></tr> 
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr bgcolor="gray" ><th><a name="part-l1" /><small>skipping to change at</small><em> line 262</em></th><th> </th><th><a name="part-r1" /><small>skipping to change at</small><em> line 262</em></th></tr>
+      <tr><td class="left"> * @{*/</td><td> </td><td class="right"> * @{*/</td></tr>
+      <tr><td class="left">#define ODPH_IPPROTO_HOPOPTS 0x00 /**&lt; IPv6 hop-by-hop options */</td><td> </td><td class="right">#define ODPH_IPPROTO_HOPOPTS 0x00 /**&lt; IPv6 hop-by-hop options */</td></tr>
+      <tr><td class="left">#define ODPH_IPPROTO_ICMPV4  0x01 /**&lt; Internet Control Message Protocol (1
+) */</td><td> </td><td class="right">#define ODPH_IPPROTO_ICMPV4  0x01 /**&lt; Internet Control Message Protocol (1
+) */</td></tr>
+      <tr><td class="left">#define ODPH_IPPROTO_TCP     0x06 /**&lt; Transmission Control Protocol (6) */</td><td> </td><td class="right">#define ODPH_IPPROTO_TCP     0x06 /**&lt; Transmission Control Protocol (6) */</td></tr>
+      <tr><td class="left">#define ODPH_IPPROTO_UDP     0x11 /**&lt; User Datagram Protocol (17) */</td><td> </td><td class="right">#define ODPH_IPPROTO_UDP     0x11 /**&lt; User Datagram Protocol (17) */</td></tr>
+      <tr><td class="left">#define ODPH_IPPROTO_ROUTE   0x2B /**&lt; IPv6 Routing header (43) */</td><td> </td><td class="right">#define ODPH_IPPROTO_ROUTE   0x2B /**&lt; IPv6 Routing header (43) */</td></tr>
+      <tr><td class="left">#define ODPH_IPPROTO_FRAG    0x2C /**&lt; IPv6 Fragment (44) */</td><td> </td><td class="right">#define ODPH_IPPROTO_FRAG    0x2C /**&lt; IPv6 Fragment (44) */</td></tr>
+      <tr><td class="left">#define ODPH_IPPROTO_AH      0x33 /**&lt; Authentication Header (51) */</td><td> </td><td class="right">#define ODPH_IPPROTO_AH      0x33 /**&lt; Authentication Header (51) */</td></tr>
+      <tr><td class="left">#define ODPH_IPPROTO_ESP     0x32 /**&lt; Encapsulating Security Payload (50) 
+*/</td><td> </td><td class="right">#define ODPH_IPPROTO_ESP     0x32 /**&lt; Encapsulating Security Payload (50) 
+*/</td></tr>
+      <tr><td class="left">#define ODPH_IPPROTO_ICMPV6  0x3A /**&lt; Internet Control Message Protocol (5
+8) */</td><td> </td><td class="right">#define ODPH_IPPROTO_ICMPV6  0x3A /**&lt; Internet Control Message Protocol (5
+8) */</td></tr>
+      <tr><td><a name="diff0001" /></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">#define ODPH_IPPROTO_SCTP    0x84 /**&lt; Stream Control Transmission protocol</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">                                      (132) */</span></td></tr>
+      <tr><td class="left">#define ODPH_IPPROTO_INVALID 0xFF /**&lt; Reserved invalid by IANA */</td><td> </td><td class="right">#define ODPH_IPPROTO_INVALID 0xFF /**&lt; Reserved invalid by IANA */</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**@}*/</td><td> </td><td class="right">/**@}*/</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**</td><td> </td><td class="right">/**</td></tr>
+      <tr><td class="left"> * Parse IPv4 address from a string</td><td> </td><td class="right"> * Parse IPv4 address from a string</td></tr>
+      <tr><td class="left"> *</td><td> </td><td class="right"> *</td></tr>
+      <tr><td class="left"> * Parses IPv4 address from the string which must be passed in the format o
+f</td><td> </td><td class="right"> * Parses IPv4 address from the string which must be passed in the format o
+f</td></tr>
+      <tr><td class="left"> * four decimal digits delimited by dots (xxx.xxx.xxx.xxx). All four digits</td><td> </td><td class="right"> * four decimal digits delimited by dots (xxx.xxx.xxx.xxx). All four digits</td></tr>
+      <tr><td class="left"> * have to be present and may have leading zeros. String does not have to b
+e</td><td> </td><td class="right"> * have to be present and may have leading zeros. String does not have to b
+e</td></tr>
+
+     <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+     <tr bgcolor="gray"><th colspan="5" align="center"><a name="end">&nbsp;End of changes. 1 change blocks.&nbsp;</a></th></tr>
+     <tr class="stats"><th><i>0 lines changed or deleted</i></th><th><i> </i></th><th><i>2 lines changed or added</i></th></tr>
+     <tr><td colspan="5" align="center" class="small"></td></tr>
+   </table>
+   <br/><br/>
+ 
+  <table class='diff_tbl' border="0" cellpadding="0" cellspacing="0"> 
+  <tr bgcolor="orange"><th>&nbsp;odph_api.h (1.19.0.2)&nbsp;</th><th> </th><th>&nbsp;odph_api.h (current)&nbsp;</th></tr> 
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr bgcolor="gray" ><th><a name="part-l1" /><small>skipping to change at</small><em> line 30</em></th><th> </th><th><a name="part-r1" /><small>skipping to change at</small><em> line 30</em></th></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">#include &lt;odp/helper/chksum.h&gt;</td><td> </td><td class="right">#include &lt;odp/helper/chksum.h&gt;</td></tr>
+      <tr><td class="left">#include &lt;odp/helper/odph_cuckootable.h&gt;</td><td> </td><td class="right">#include &lt;odp/helper/odph_cuckootable.h&gt;</td></tr>
+      <tr><td class="left">#include &lt;odp/helper/eth.h&gt;</td><td> </td><td class="right">#include &lt;odp/helper/eth.h&gt;</td></tr>
+      <tr><td class="left">#include &lt;odp/helper/odph_hashtable.h&gt;</td><td> </td><td class="right">#include &lt;odp/helper/odph_hashtable.h&gt;</td></tr>
+      <tr><td class="left">#include &lt;odp/helper/icmp.h&gt;</td><td> </td><td class="right">#include &lt;odp/helper/icmp.h&gt;</td></tr>
+      <tr><td class="left">#include &lt;odp/helper/ip.h&gt;</td><td> </td><td class="right">#include &lt;odp/helper/ip.h&gt;</td></tr>
+      <tr><td class="left">#include &lt;odp/helper/ipsec.h&gt;</td><td> </td><td class="right">#include &lt;odp/helper/ipsec.h&gt;</td></tr>
+      <tr><td class="left">#include &lt;odp/helper/odph_lineartable.h&gt;</td><td> </td><td class="right">#include &lt;odp/helper/odph_lineartable.h&gt;</td></tr>
+      <tr><td class="left">#include &lt;odp/helper/odph_iplookuptable.h&gt;</td><td> </td><td class="right">#include &lt;odp/helper/odph_iplookuptable.h&gt;</td></tr>
+      <tr><td><a name="diff0001" /></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">#include &lt;odp/helper/sctp.h&gt;</span></td></tr>
+      <tr><td class="left">#include &lt;odp/helper/strong_types.h&gt;</td><td> </td><td class="right">#include &lt;odp/helper/strong_types.h&gt;</td></tr>
+      <tr><td class="left">#include &lt;odp/helper/tcp.h&gt;</td><td> </td><td class="right">#include &lt;odp/helper/tcp.h&gt;</td></tr>
+      <tr><td class="left">#include &lt;odp/helper/table.h&gt;</td><td> </td><td class="right">#include &lt;odp/helper/table.h&gt;</td></tr>
+      <tr><td class="left">#include &lt;odp/helper/threads.h&gt;</td><td> </td><td class="right">#include &lt;odp/helper/threads.h&gt;</td></tr>
+      <tr><td class="left">#include &lt;odp/helper/udp.h&gt;</td><td> </td><td class="right">#include &lt;odp/helper/udp.h&gt;</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">#ifdef __cplusplus</td><td> </td><td class="right">#ifdef __cplusplus</td></tr>
+      <tr><td class="left">}</td><td> </td><td class="right">}</td></tr>
+      <tr><td class="left">#endif</td><td> </td><td class="right">#endif</td></tr>
+      <tr><td class="left">#endif</td><td> </td><td class="right">#endif</td></tr>
+
+     <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+     <tr bgcolor="gray"><th colspan="5" align="center"><a name="end">&nbsp;End of changes. 1 change blocks.&nbsp;</a></th></tr>
+     <tr class="stats"><th><i>0 lines changed or deleted</i></th><th><i> </i></th><th><i>1 lines changed or added</i></th></tr>
+     <tr><td colspan="5" align="center" class="small"></td></tr>
+   </table>
+   <br/><div style='width:100%;' align='left' class='small'>This html diff was produced by rfcdiff 1.41.The latest version is available from <a href='http://tools.ietf.org/tools/rfcdiff/'>http://tools.ietf.org/tools/rfcdiff/</a></div>
+</td></tr></table>
+</body>
+</html>

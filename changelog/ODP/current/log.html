@@ -1,0 +1,1303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="ODP, current, changes, changelog" />
+    <meta name="description" content="Log of changes in the package" />
+    <link rel="stylesheet" type="text/css" href="../../../css/common.css" />
+    <link rel="stylesheet" type="text/css" href="../../../css/changelog.css" />
+    
+    
+    <title>
+        ODP current: changelog
+    </title>
+    
+    </head>
+
+<body>
+<table cellpadding='0' cellspacing='0'><tr><td align='center'><h1 class='tool'><a title='ABI tracker for ODP' href='../../../timeline/ODP/index.html' class='tool'>ABI<br/>Tracker</a></h1></td><td width='30px;'></td><td><h1>(ODP)</h1></td></tr></table><hr/>
+<br/>
+<br/>
+<h1>Changelog from Git</h1><br/><br/>
+<div class='changelog'>
+<pre class='wrap'>commit b44cbbbfc148261843b041fbb5b4ea8f8879f44e
+Author: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+Date:   2018-09-11 16:35:27 +0300
+
+    helper: iplookuptable fix puting values to table
+    
+    On putting values to table we have to validate input data
+    and reject unaccepted data (cidr bits - Classless Inter-Domain
+    Routing is in range of 0 to 32).
+    
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+
+commit 461a16705242b1fd7e64b50fcaae57fce7cd7f79
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-09-11 15:12:13 +0300
+
+    linux-gen: ipsec: reject SA creation with ESN flag set
+    
+    Reject SA creation with ESN flag set.
+    Fixes: https://bugs.linaro.org/show_bug.cgi?id=4002
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 94a4993ad85539f138178ba738b87d45ba09a1f9
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-09-11 13:12:16 +0300
+
+    linux-gen: ipsec: fix sliding window shifts
+    
+    If shift is greater than window bit-width, bit shift results in
+    undefined behaviour. Rewrite code to excplicitly set the mask in such
+    cases.
+    Fixes: https://bugs.linaro.org/show_bug.cgi?id=3999
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Janne Peltonen &lt;janne.peltonen@nokia.com&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit c5789c8633254aca7e1d978d1e1f0ad7077e7e2c
+Author: Josep Puigdemont &lt;josep.puigdemont@linaro.org&gt;
+Date:   2018-09-06 13:06:09 +0200
+
+    linux-gen: ishm: make huge page cache size dynamic
+    
+    Signed-off-by: Josep Puigdemont &lt;josep.puigdemont@linaro.org&gt;
+    Reviewed-and-tested-by: Matias Elo &lt;matias.elo@nokia.com&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit c46f54d8c708d6335b0288ff4a5aad3a3b93e41c
+Author: Josep Puigdemont &lt;josep.puigdemont@linaro.org&gt;
+Date:   2018-08-27 16:37:15 +0200
+
+    linux-gen: ishm: implement huge page cache
+    
+    With this patch, ODP will pre-allocate several huge pages at init
+    time. When memory is to be mapped into a huge page, one that was
+    pre-allocated will be used, if available, this way ODP won't have to
+    trap into the kernel to allocate huge pages.
+    
+    The idea with this implementation is to trick ishm into thinking that
+    a file descriptor where to map the memory was provided, this way it
+    it won't try to allocate one itself. This file descriptor is one of
+    those previously allocated at init time. When the system is done with
+    this file descriptor, instead of closing it, it is put back into the
+    list of available huge pages, ready to be reused.
+    
+    A collateral effect of this patch is that memory is not zeroed out
+    when it is reused.
+    
+    WARNING: This patch will not work when using process mode threads.
+    For several reasons, this may not work when using ODP_ISHM_SINGLE_VA
+    either, so when this flag is set, the list of pre-allocated files is
+    not used.
+    
+    By default ODP will not reserve any huge pages, to tell ODP to do that,
+    update the ODP configuration file with something like this:
+    shm: {
+        num_cached_hp = 32
+    }
+    
+    Example usage:
+    
+    $ echo odp.config
+    odp_implementation = "linux-generic"
+    config_file_version = "0.0.1"
+    shm: {
+        num_cached_hp = 32
+    }
+    
+    $ ODP_CONFIG_FILE=odp.conf ./test/validation/api/shmem/shmem_main
+    
+    This patch solves bug #3774:
+    https://bugs.linaro.org/show_bug.cgi?id=3774
+    Signed-off-by: Josep Puigdemont &lt;josep.puigdemont@linaro.org&gt;
+    Reviewed-and-tested-by: Matias Elo &lt;matias.elo@nokia.com&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 0b9a1a2e8334581126d4ece3fb4f9e019d88da0d
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-09-05 13:19:43 +0300
+
+    validation: scheduler: increase wait tolerance timeout to 150 msec
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 3c935f73096826f1ad837ef42ed377bbdffbdb4c
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-09-04 22:07:31 +0300
+
+    validation: timer: be more tolerant wrt delays
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 90016dee6e905f2089266495fd29ec00d217c582
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-09-04 22:07:31 +0300
+
+    validation: time: be more tolerant wrt delays
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 379e29833c3ade07ffc5f41cf11aeee8bc15ae52
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-09-04 22:08:10 +0300
+
+    validation: scheduler: print debug diagnostics on test_wait failure
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit beece6ec441455598b405c96672dad803bdeb04f
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-09-04 22:07:15 +0300
+
+    validation: time: fix c&amp;p error
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 8e93d650453505cf6a80154b83060e68dacc5fc9
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-09-04 13:14:49 +0300
+
+    linux-gen: fix pktio private size on 128-byte cache machines
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 4b58f73b6f95501d7a6ad2c0b6cbdcb467644971
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-09-04 09:56:23 +0300
+
+    linux-gen: abi: set ODP_CACHE_LINE_SIZE to 128 on ppc64le
+    
+    POWER8 has 128-byte cache lines
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit e4a2c3e72e1c6fb6e6c6554971e4e01376b70034
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-09-04 09:56:23 +0300
+
+    include: abi: set ODP_CACHE_LINE_SIZE to 128 on ppc64le
+    
+    POWER8 has 128-byte cache lines
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 42a46399f064212fc7a16f088779bee744d1241c
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-09-10 15:33:38 +0300
+
+    linux-gen: ring: change ring_deq return value
+    
+    Return number of data values dequeued (0 or 1) instead of
+    the data value. This improves error tolerance as there's no
+    data value reserved to indicate empty ring. Also CPU may
+    speculate further before the actual data value is actually
+    needed.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 8ae6e015e8d73092b5c6b728fa39ff8190b88015
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-09-05 16:48:53 +0300
+
+    linux-gen: sched: stash ring pointer
+    
+    Save ring pointer into stash to avoid table lookups
+    when releasing the atomic context.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 47c4ecd4bfdeeca0fd507dbb4f9182b36e5829f9
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-09-05 11:54:08 +0300
+
+    linux-gen: sched: remove queue_destroy_finalize callback
+    
+    Scheduled queue dequeue function calls directly the scheduler
+    queue destroy callback. Sched_queue_deq() usage is simpler
+    when the extra round of callbacks is removed.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 2ba3fc5be07c77feaaffdaf7eb1bdd9f7c0f37c2
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-08-31 16:17:49 +0300
+
+    linux-gen: sched: single variable for sync context status
+    
+    Use single thread local variable to keep track if
+    a synchronization context is held and the type of the context
+    (atomic or ordered). Performance is improved as sync context
+    status is located on single (the first) cache line of
+    sched_local_t.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 3331e3b51dfcbfe8be5bc8c118cb8a2561294d60
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-08-31 12:08:05 +0300
+
+    linux-gen: sched: clean up local data struct
+    
+    Move stash variables into a struct. Use only 16 bits for thread id,
+    which is enough for 64k threads.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit db8c7882c2fc8c849cebef08e505343ae1396b79
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-08-30 17:07:25 +0300
+
+    linux-gen: queue: remove extra checks
+    
+    Remove unnecessary checks from critical sections of scheduled
+    queue enqueue and dequeue operations. Parallelism improves when
+    the number of instructions and (potential) cache misses decreases
+    when holding the lock.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 1adfa2e17b27032ff31bd8f361e05970ce186148
+Author: Seungha Son &lt;linuxias@gmail.com&gt;
+Date:   2018-09-10 20:15:23 +0900
+
+    linux-gen: shm: fix wrong spelling
+    
+    Signed-off-by: Seungha Son &lt;linuxias@gmail.com&gt;
+    Reviewed-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 33fbc04b6373960ec3f84de4e7e7b34c49d71508
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-09-04 22:28:31 +0300
+
+    validation: system: 0 is valid huge page size
+    
+    If system does not support huge pages, odp_sys_huge_page_size() will
+    return 0, which should not be rejected by test.
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 0c20689a6a78818b5cdb97cfa6c23fa7d866a761
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-09-04 12:56:25 +0300
+
+    linux-gen: x86: as a last resort parse max cpu freq from bogomips value
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 4646069f0417fc180977100af2bc1f527b2d4f28
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-09-04 11:45:59 +0300
+
+    linux-gen: sysinfo: return 0 if hugepages are not supported
+    
+    Per API return 0 from odp_sys_huge_page_size_all() if hugepages are not
+    supported/detected.
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 6d48d7f7f684b8aa87f7eb4f922d45be345ed771
+Author: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+Date:   2018-09-03 18:01:49 +0300
+
+    abi: align ODP_CPUMASK_SIZE with kernel cpu_set_t
+    
+    Depends on kernel compile configuration size of cpu
+    set may differ.
+    Fixes:
+    https://bugs.linaro.org/show_bug.cgi?id=3983
+    
+    Reported-by: Robert Perper &lt;rperper@litespeedtech.com&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 926c22f695ea702e598063919303f890ec52b71b
+Author: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+Date:   2018-08-29 18:05:59 +0300
+
+    linux-gen: odp_shm_print_all: refine output spreadsheet
+    
+    Refine output print to make output spreadsheet more
+    readable:
+    Memory allocation status:
+        name                      flag range                         user_len   unused   seq ref fd  file
+     0  odp_thread_globals        ..N  0x7f59e1b74000-0x7f59e1b75000 3472       624      1   1   3  (none)
+     1  _odp_pool_table           ..N  0x7f59bf40d000-0x7f59c0514000 17850432   4032     1   1   4  (none)
+     2  _odp_queue_gbl            ..N  0x7f59e1ab0000-0x7f59e1b11000 393344     3968     1   1   5  (none)
+     3  _odp_queue_rings          ..N  0x7f59bd40d000-0x7f59bf40d000 33554432   0        1   1   6  (none)
+     4  odp_queues_lf             ..N  0x7f59e1a9f000-0x7f59e1ab0000 67648      1984     1   1   7  (none)
+     5  odp_scheduler             ..N  0x7f59bcbb9000-0x7f59bd40d000 8730624    2048     1   1   9  (none)
+     6  odp_pktio_entries         S.N  0x7f59c0600000-0x7f59c0651000 327744     4032     1   1   10 (none)
+     7  crypto_pool               ..N  0x7f59e1b6f000-0x7f59e1b74000 19800      680      1   1   11 (none)
+     8  shm_odp_cos_tbl           ..N  0x7f59e1a9a000-0x7f59e1a9f000 20480      0        1   1   12 (none)
+     9  shm_odp_pmr_tbl           ..N  0x7f59e1a7e000-0x7f59e1a9a000 114688     0        1   1   13 (none)
+    10  shm_odp_cls_queue_grp_tbl ..N  0x7f59e1b6b000-0x7f59e1b6f000 16384      0        1   1   14 (none)
+    11  pool_ring_0               ..N  0x7f59bc7b8000-0x7f59bcbb9000 4194432    3968     1   1   15 (none)
+    12  ipsec_status_pool         ..N  0x7f59e19be000-0x7f59e1a7e000 786432     0        1   1   16 (none)
+    13  ipsec_sa_table            ..N  0x7f59e19bd000-0x7f59e19be000 2112       1984     1   1   17 (none)
+    14  test_shmem                ..N  0x7f59e19bb000-0x7f59e19bd000 4120       4072     7   1   18 (none)
+    TOTAL:                                                           66113536   27392
+                                                                     (63MB)     (0MB)
+    
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+
+commit 6d50738dd0880aff32b58b15f550150a4766f13e
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-08-30 12:44:44 +0300
+
+    test: sched_perf: total events per second
+    
+    Added result for events per second over all
+    workers.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit e8cb778f75282d08ad398e9145e8b14b05c7cf05
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-08-28 16:49:22 +0300
+
+    test: sched_perf: add event forward option
+    
+    Added -f option to enable event forwarding between queues.
+    By default, an event is sent back to the queue it was
+    received from. When forwaring is enabled, it's sent to the
+    next queue.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit e357f694d31de49a7bf03d088cab02fb9a1a055f
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-08-28 15:44:35 +0300
+
+    test: sched_perf: total number of queues option
+    
+    Change -q option to be the total number of queues with events.
+    There's no need to limit the number of queues to a multiple of
+    worker thread count. Also, add an option for number of dummy
+    (empty) queues. This enables testing scheduler performance
+    when all created queues are not used.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 4aff065f37799847e46d1d10644c6113332783d1
+Author: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+Date:   2018-09-03 15:22:52 +0300
+
+    travis: add ubuntu 18.04 compilation test
+    
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+     Reviewed-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+
+commit 0a5d67beda902557056d5b5146d8cbe86e5001b0
+Author: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+Date:   2018-08-30 16:18:58 +0300
+
+    travis: let after_failure task print logs
+    
+    current print logs are not executed due to set -e,
+    let after_failure task print logs if return code
+    is not zero.
+    
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+    Reviewed-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+
+commit ef122c4484ee63f64f0a1b5cab74b018b19e6361
+Author: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+Date:   2018-08-30 16:15:33 +0300
+
+    travis: set CI for distcheck
+    
+    on distcheck TM test is called but it can fail under Travis.
+    
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+    Reviewed-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+
+commit 97fc51b1e5b3fcea9db99ba63c10bda47f79341a
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-08-27 04:39:25 +0300
+
+    ci: do compile-after-install test
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit d1248e7d74a8a9c9aecfd8acf5b9c6cb06591aae
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-08-27 04:30:17 +0300
+
+    ci: move build stage to common script
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit b420bd3386b5b28283de0a308c51108bed07e7e0
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-08-27 04:23:43 +0300
+
+    ci: rewrite coverage and distcheck scripts to follow other build scripts
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 0ff72a3e3c9e7cbfde3d2b7d088a49e248fc779a
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-08-27 04:12:58 +0300
+
+    travis: restore quick build-only testing
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 39e3b88db39174279c1902a0153c6efeed894c5b
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-08-27 04:07:26 +0300
+
+    travis: move netmap to install stage
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 886cd2e905fbae644204ae67c87cd5f54b47e49a
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-08-24 02:39:17 +0300
+
+    m4: odp_dpdk: pass CFLAGS and LDFLAGS to CC when locating libdpdk.so
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 6c70ce349467434bf3b0941d11ee1d27b161acf6
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-08-23 04:02:32 +0300
+
+    travis: switch to unified 16.04 image
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 96e6c6409bfe8e5f276f136c4e10454f112cd662
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-08-26 14:57:56 +0300
+
+    travis: fix DOCKER_NAMESPACE variable setting
+    
+    First, original commit missed one quote mark. Second, conditional ifs do
+    not work in env: part of .travis.yml. Set DOCKER_NAMESPACE properly.
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Fixes: 989df5d2f97ab4711328b11282dcc743f5740e00
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 6ce60cac1fea6d65803740f5f9b6627abf6814b3
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-08-24 16:19:48 +0300
+
+    linux-gen: ring_spsc: move ring mask and data pointer
+    
+    Store mask and data pointer in queue entry instead of ring
+    structure. Data is constant and can be stored among other
+    frequently used read only data. Also other ring type use
+    the same variables.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit f2fd33bd4a83f92f080826accc064df94e263210
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-08-24 16:04:54 +0300
+
+    linux-gen: ring_st: move ring mask and data pointer
+    
+    Store mask and data pointer in queue entry instead of ring
+    structure. Data is constant and can be stored among other
+    frequently used read only data. Also other ring type use
+    the same variables.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit cb93abaef977a8014e81b296e8656c9faa43eaf2
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-08-21 10:40:59 +0300
+
+    linux-gen: queue: use mpmc ring in plain queues
+    
+    Change plain queue implementation to use ring_mpmc instead
+    of ticket lock and ring_st ring. Performance and scalability
+    improves especially on 64 bit ARM.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 3330513ba71f43869538ce6e97962c59f331a5ad
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-08-20 17:38:18 +0300
+
+    linux-gen: ring_mpmc: new multi-producer, multi-consumer ring
+    
+    The ring is similar to ring_internal.h, but checks for ring
+    fullness. This ring can be used for storing events in a queue
+    as enqueues can be tried on an already full queue.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 6adce4648bf228b60fc65312964a21c84771f58d
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-08-22 14:43:43 +0300
+
+    test: queue_perf: add burst_size option
+    
+    Added option to select maximum burst size. Changed to
+    multi-dequeue and enqueue functions.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 1a1e19cfd78018ba00fb75951dc6e6ce4d55ae1f
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-08-22 14:18:55 +0300
+
+    test: queue_perf: add num_cpu option
+    
+    Added support for multiple threads and -c options to select
+    number of worker threads.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 7f7821256a53c6b9e810ac3bb07ae87dc79a9616
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-08-22 13:07:12 +0300
+
+    test: queue_perf: prepare for multiple worker threads
+    
+    Split queue create, test run and queue destroy into separate
+    functions and use helper to create a single worker thread.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 989df5d2f97ab4711328b11282dcc743f5740e00
+Author: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+Date:   2018-08-22 22:03:50 +0300
+
+    travis: setup default docker name space
+    
+    Travis runs docker images which build under
+    github/Linaro/odp-docker-images.git project. DOCKER_NAMESPACE variable
+    should be set in Travis settings (in web interface) to match image
+    which build to images which is used for testing. If that variable is
+    not set, then switch to mainline images (opendataplane/&lt;image&gt;).
+    
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+
+commit 1c36bf726387b291d73bee1448cf163527cf5fb0
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-08-16 12:04:49 +0300
+
+    validation: pktio: add SCTP checksum tests
+    
+    Add tests validating SCTP checksumming on pkt out and checksum
+    verification on pkt in.
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit fb2159c2bfa65e9777e120fd7e364561861ede29
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-08-16 11:48:02 +0300
+
+    linux-gen: ipsec: insert checksum into SCTP packets if required
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit d1a1ed78d5d1255a68399a47ab42f7cccd9efe8f
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-08-16 11:46:15 +0300
+
+    linux-gen: pktio: loop: handle SCTP checksums
+    
+    Add code to emulate hardware SCTP checksumming support over loop device
+    (as it is done for IPv4/TCP/UDP).
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit cd7c7b287229375bb6cf848def60d6ac866c4445
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-08-16 11:45:19 +0300
+
+    linux-gen: packet: support SCTP packet insertion
+    
+    Add support for insertion of checksum into SCTP packets.
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 4c797e8478dfffd914b8af4e4299a8ab03e0f59c
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-08-16 11:42:30 +0300
+
+    linux-gen: packet: parse SCTP packets and verify checksum
+    
+    Verify SCTP packet checksums. Use CRC32-c as requied by RFC3309 instead
+    of original Adler-32.
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 7926eb572b3e945fd4443a32a06939136929aab8
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-08-16 11:40:10 +0300
+
+    linux-gen: add SCTP protocol header
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 4c5a303d05406afe4f821f732254c83d387c259b
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-08-16 11:55:07 +0300
+
+    helper: add SCTP handling functions
+    
+    Add functions to set and verify SCTP packet checksum.
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 3e8d0eeb61b49034d0c13c2e675b8cd8eb77a4b4
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-08-16 11:40:40 +0300
+
+    helper: add SCTP protocol header
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 663dcce721a2f4502644adc7140dc945c7e7f333
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-08-16 11:48:46 +0300
+
+    validation: pktio: parser: add SCTP test
+    
+    Add SCTP packet parsing test, checking that protocol is properly
+    recognized.
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit ffae3fb4a25d5d226656cefe99d4219e1461b633
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-08-21 12:38:36 +0300
+
+    test/common: add IPv6 SCTP packet
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 18a022887fab2af810ae20c9dd2c5b4516188208
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-08-16 01:47:51 +0300
+
+    validation: pktio: fix checks in pktio tests
+    
+    - cleanly close PktI/O if packet creation has failed
+    - verify UDP checksum in UDP checksum override test
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 4785b1020c6df98556f22d854daaae907303e684
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-08-16 01:44:54 +0300
+
+    validation: pktio: check sctp flag in parser tests
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit f8a3e7255186d34f69da81f0274f5ff647429047
+Author: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+Date:   2018-07-10 10:26:17 +0300
+
+    travis: add docker tests
+    
+    initial Travis docker runs
+    
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+    Reviewed-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+
+commit f6c423a7d29e2c7d6d890cbc098a398d0d7e1288
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-08-21 12:46:54 +0300
+
+    test: queue_perf: handle max queue size capability zero
+    
+    Queue size capability value of zero means that there is
+    not limit.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Reviewed-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit f850092201668db7a73258a58324be10b7fb1909
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-08-21 15:08:45 +0300
+
+    linux-gen: queue: fix ordered queue issue
+    
+    Also plain queue enqueue needs to call scheduler ordered enqueue
+    function, so that scheduler can check re-ordering needs.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Reviewed-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 912e026c108d7a496ac7467e953dea77dadaaa57
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-08-17 14:39:53 +0300
+
+    linux-gen: queue: separate plain and sched enqueue functions
+    
+    Separate enqueue function implementations for plain and scheduled
+    queues. Plain queue implementation is simplified and scheduled
+    queue implementation does not change.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 53e883be583d6108aa2afb935f5115c038d732b0
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-08-17 10:46:50 +0300
+
+    linux-gen: queue: prepare for separate queue operations
+    
+    Prepare for separate plain and scheduled queue enqueue and
+    dequeue operations. Plain queue enq/deq operations will be
+    simplified and scheduled queues do not have dequeue
+    functions (error functions instead). Enqueue/dequeue
+    functionality is not changed yet, functions are only renamed
+    and moved.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit cbf59d43c2eabfc92252faf6f92496b570b87c69
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-08-17 10:16:57 +0300
+
+    linux-gen: queue: remove enq/deq from queue interface
+    
+    Use inlined queue enqueue and dequeue functions instead of
+    internal interface versions. Removed functions from internal
+    interface. Original dequeue multi call remains for overriding
+    dequeue calls (e.g. packet input overrides queue dequeue
+    function but uses the original queue).
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 0cf079bb8c66b317b0c1c841264087c65866d5d5
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-08-14 15:40:47 +0300
+
+    linux-gen: queue: remove internal queue handle conversions
+    
+    Use odp_queue_t as internal queue handle. This simplifies internal
+    queue interface as intermediate type (void *q_int) and additional
+    conversions (from_ext() and to_ext()) are not needed. Queue handle
+    stores pointer to queue entry as before. Conversion is a simple cast
+    (nop as an inline function) for both queue implementations.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit c9f834ad2462498c6c875642aef1523a3eec8dde
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-08-16 15:00:05 +0300
+
+    linux-gen: queue: inline enq and deq functions
+    
+    Inline queue enqueue and dequeue functions.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 6205659639b7efac4c84cea6abfaac62e2745eb1
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-08-16 14:46:14 +0300
+
+    api: queue: split queue spec header file
+    
+    Split typedefs into a separate header file, so that queue functions
+    can be inlined. API content was not changed, only moved it.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 8e315e2fc863d4636667c34feee56815a3b46c93
+Author: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+Date:   2018-08-09 15:02:59 +0300
+
+    example: tm: add some message on exit
+    
+    on clean exit it's good to add some message to see that
+    app was not terminated in the middle.
+    
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+    Reviewed-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+
+commit 048f089a6b5fec94c09d9c3ba60105fe89b43c90
+Author: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+Date:   2018-08-09 14:52:43 +0300
+
+    example: tm: use 0 array index for queues
+    
+    For some reason 0 array index was skipped and loop started from
+    1.
+    
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+    Reviewed-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+
+commit bb4c8fb4e9311401acf31756d746b91fbd949699
+Author: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+Date:   2018-08-08 18:23:31 +0300
+
+    example: tm: add tm queues destroy
+    
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+    Reviewed-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+
+commit 8de2b39a6498fb52d838fd6eaefc1af9e044d718
+Author: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+Date:   2018-08-08 18:32:07 +0300
+
+    linux-gen: odp_tm_queue_destroy should not take care about params
+    
+    params are set by application, we should not take care about them in
+    implementation function.
+    
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+    Reviewed-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+
+commit dc28824415ea510e3ef62e47f7640bf4a8420fde
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-08-08 15:41:09 +0300
+
+    test: sched_perf: add num queues option
+    
+    Added option to set number of queues per worker thread. Number
+    of active queues affects usually scheduler performance.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit bcb7aa8cb4e0fc0974cea7c92a488e0a6ba84c95
+Author: Matias Elo &lt;matias.elo@nokia.com&gt;
+Date:   2018-08-09 10:40:50 +0300
+
+    abi: timer: set ODP_TIMER_INVALID to zero
+    
+    Signed-off-by: Matias Elo &lt;matias.elo@nokia.com&gt;
+    Reviewed-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 0b87221f657b4c88cba3011f350503ece92cfd1c
+Author: Matias Elo &lt;matias.elo@nokia.com&gt;
+Date:   2018-08-09 10:23:37 +0300
+
+    abi: timer: set ODP_TIMEOUT_INVALID to zero
+    
+    Signed-off-by: Matias Elo &lt;matias.elo@nokia.com&gt;
+    Reviewed-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 008a34ae01a1980c4bfae5baf0c6df2bcd5820db
+Author: Matias Elo &lt;matias.elo@nokia.com&gt;
+Date:   2018-08-09 10:16:46 +0300
+
+    abi: timer: set ODP_TIMER_POOL_INVALID to zero
+    
+    Signed-off-by: Matias Elo &lt;matias.elo@nokia.com&gt;
+    Reviewed-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 9ffd1b9e2a3c10d7ba0e17689e5e1b823ecec393
+Author: Matias Elo &lt;matias.elo@nokia.com&gt;
+Date:   2018-08-09 09:47:29 +0300
+
+    abi: pool: set ODP_POOL_INVALID to zero
+    
+    Signed-off-by: Matias Elo &lt;matias.elo@nokia.com&gt;
+    Reviewed-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit bbd5e76447bc586495cf79262314ec29ffe31540
+Author: Matias Elo &lt;matias.elo@nokia.com&gt;
+Date:   2018-08-09 09:32:09 +0300
+
+    abi: ipsec: set ODP_IPSEC_SA_INVALID to zero
+    
+    Signed-off-by: Matias Elo &lt;matias.elo@nokia.com&gt;
+    Reviewed-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 54afd62e94e98fa8099c58c7d4deb54f563c52e7
+Author: Matias Elo &lt;matias.elo@nokia.com&gt;
+Date:   2018-08-08 17:09:12 +0300
+
+    abi: classification: set ODP_PMR_INVAL to zero
+    
+    Signed-off-by: Matias Elo &lt;matias.elo@nokia.com&gt;
+    Reviewed-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 5803effe1db1078189fc14d192943cd65b6a0d62
+Author: Matias Elo &lt;matias.elo@nokia.com&gt;
+Date:   2018-08-08 16:01:48 +0300
+
+    abi: classification: set ODP_COS_INVALID to zero
+    
+    Signed-off-by: Matias Elo &lt;matias.elo@nokia.com&gt;
+    Reviewed-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 4bd301ee6b110282cf04ac581775ba9fd093d2d1
+Author: Matias Elo &lt;matias.elo@nokia.com&gt;
+Date:   2018-08-08 14:53:50 +0300
+
+    abi: packet: set ODP_PACKET_SEG_INVALID to zero
+    
+    Signed-off-by: Matias Elo &lt;matias.elo@nokia.com&gt;
+    Reviewed-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 7c87b66edc84e8c713fefc68d46464660adaf71e
+Author: Seungha Son &lt;linuxias@gmail.com&gt;
+Date:   2018-08-02 00:22:40 +0900
+
+    test: odp_pool_per: fix printf string format
+    
+    Signed-off-by: Seungha Son &lt;linuxias@gmail.com&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Reviewed-by: Bogdan Pricope &lt;bogdan.pricope@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 6886a2ca3d3dd1157302ddee424c36f632903bd0
+Author: Matias Elo &lt;matias.elo@nokia.com&gt;
+Date:   2018-08-02 10:35:24 +0300
+
+    linux-gen: dpdk: fix calling internal dpdk function
+    
+    Use pool_alloc() directly instead of using internal DPDK wrapper function.
+    
+    Fixes: https://github.com/Linaro/odp/issues/662
+    
+    Signed-off-by: Matias Elo &lt;matias.elo@nokia.com&gt;
+    Reported-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit d3191c08080c2e73d931697626d39c174f1c663f
+Author: Seungha Son &lt;seungha.son@samsung.com&gt;
+Date:   2018-07-31 19:03:52 +0900
+
+    linux-gen: timer: add debug print when running out of timer pools
+    
+    Signed-off-by: Seungha Son &lt;seungha.son@samsung.com&gt;
+    Reviewed-by: Matias Elo &lt;matias.elo@nokia.com&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit d7c097e4a1168efa7393f8028179a2ff2f96505d
+Author: Matias Elo &lt;matias.elo@nokia.com&gt;
+Date:   2018-07-27 11:01:26 +0300
+
+    linux-gen: netmap: fix incorrect debug message
+    
+    Move debug message to the correct code branch and add more debug info.
+    
+    Signed-off-by: Matias Elo &lt;matias.elo@nokia.com&gt;
+    Reported-by: Gyanesh Patra &lt;pgyanesh.patra@gmail.com&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 6d91fe717d2e62e048fb8837a67cc1118a3113d1
+Author: Matias Elo &lt;matias.elo@nokia.com&gt;
+Date:   2018-07-06 09:39:55 +0300
+
+    thread: increase ODP_THREAD_COUNT_MAX to 256
+    
+    Signed-off-by: Matias Elo &lt;matias.elo@nokia.com&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 9b7d0f9116a6e040f151c994ed10e958b9399295
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-07-17 19:27:30 +0300
+
+    linux-gen: crypto: properly sort AES-CMAC capabilities
+    
+    According to the specs, digest capabilities should be sorted first by
+    digest length, then by key length. Sort AES-CMAC caps accordingly.
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit b3a8f10e0d4c1d323e682025b1189018d5d01cbf
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-07-17 17:08:02 +0300
+
+    example: sysinfo: print more information about crypto capabilities
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 2b6cccd3541f053140b1765913a9ca5af67d374d
+Author: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+Date:   2018-07-19 19:45:58 +0300
+
+    configure.ac print linker
+    
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+
+commit 24201040f2a8e66f11359f29b283831db8550c84
+Author: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+Date:   2018-07-16 17:55:24 -0500
+
+    configure: add warning about --without-openssl implications
+    
+    ODP now supports the --without-openssl configure option to not
+    use OpenSSL as part of building odp-linux. However, omitting
+    OpenSSL will make strong cryptographic support unavailable.
+    
+    Display the OpenSSL inclusion status as part of configure
+    output and include a warning to be sure the user understands
+    this implication of omitting this support.
+    
+    Signed-off-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Reviewed-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 55b8ccb80bee2eaf7932a5bbb7963544d8fc906b
+Author: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+Date:   2018-07-17 16:31:06 +0300
+
+    fix code check warning using CC in code
+    
+    Fix error when code check finds CC inside patch
+    itself and wants to validate it as description note.
+    ERROR: Unrecognized email address: '${CC}'
+    
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Reviewed-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+
+commit 6add70a4ff916acb331b961bc230cf946fbe835a
+Author: Matias Elo &lt;matias.elo@nokia.com&gt;
+Date:   2018-07-12 11:35:07 +0300
+
+    linux-gen: ipsec: fall back to lower odp_random_kind_t if necessary
+    
+    Create IV with lower random kind if ODP_RANDOM_CRYPTO is not supported.
+    This enables passing validation tests using odp_random_null.
+    
+    Signed-off-by: Matias Elo &lt;matias.elo@nokia.com&gt;
+    Reviewed-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit ee6fdca6b647d1c92ba6d07400c7d1e23c9e0ce3
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-07-05 14:27:45 +0300
+
+    linux-gen: sched: configurable default burst size
+    
+    Make default burst sizes configurable. User can set limits for
+    burst size round up in high/low priority. When less than
+    burst_size_xx events are requested, scheduler rounds up the
+    number of events to these limit and stash extra events. Requests
+    with more events are not round down. So, user can use small
+    values in burst size configure for better real-time support, but
+    still request large number of events for better throughput on
+    non real-time threads.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 0070431f72dacef15d104bcf2baa9d70629d3d31
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-07-05 11:14:26 +0300
+
+    linux-gen: sched: move basic queue scheduler functions
+    
+    Moved and renamed basic queue interface functions towards
+    schedulers. Queue and scheduler implementations are tied
+    together as queue enq/deq operations change queue scheduling
+    state. Three schedulers are based on basic queue implementation
+    and include basic queue internal header file already. Move this
+    internal interface into proper internal header file.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 5a43e72ba90dc5b4ea4ae3e8875075440e709655
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-07-05 10:54:16 +0300
+
+    linux-gen: queue: rename queue basic internal header file
+    
+    This is internal interface towards queue basic.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 0ee7d42a7280e7ced1ea2f97e80dc752f28f76b2
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-07-05 10:33:34 +0300
+
+    linux-gen: queue: separate plain and sched dequeues
+    
+    Separate dequeue functions for plain and scheduled queues.
+    Plain queue dequeue function become simpler and scheduler
+    dequeue function may be optimized later as it is a single
+    consumer dequeue operation.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit c7bbbb603fc4cf2e6590af962e2e255241d18276
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-07-04 17:17:46 +0300
+
+    linux-gen: sched: support large burst size from pktin
+    
+    When directly receiving from pktin (atomic or parallel queues),
+    output event handles directly to destination array (scheduler
+    stash or application's array). This avoids extra handle copy
+    and enables supports for large burst sizes.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit c0d530e01e91fbea195993293eed60f1677e6181
+Author: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+Date:   2018-07-04 14:11:59 +0300
+
+    linux-gen: sched: support large burst sizes
+    
+    Small burst sizes are rounded up to CONFIG_BURST_SIZE and excess
+    events are stashed. Larger (&gt;CONFIG_BURST_SIZE) bursts are stored
+    directly into application buffer and nothing is stashed.
+    
+    Signed-off-by: Petri Savolainen &lt;petri.savolainen@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit 942bbe22b7147e2988aa0b82e094a53421f2c486
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-07-09 21:54:34 +0300
+
+    travis: switch iptables policy to let tap driver work
+    
+    Fix suggested by Maxim Uvarov.
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+commit d5690aa464880a258f653e1b4d68f150b4c660a8
+Author: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+Date:   2018-07-09 17:00:10 +0300
+
+    travis: pin repositories to architectures
+    
+    Signed-off-by: Dmitry Eremin-Solenikov &lt;dmitry.ereminsolenikov@linaro.org&gt;
+    Reviewed-by: Bill Fischofer &lt;bill.fischofer@linaro.org&gt;
+    Signed-off-by: Maxim Uvarov &lt;maxim.uvarov@linaro.org&gt;
+
+...</pre></div>
+
+</body>
+</html>
